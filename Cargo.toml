@@ -6,5 +6,5 @@ edition = "2021"
 [dependencies]
 valida-rs = { git = "https://github.com/lita-xyz/valida-rs.git", branch = "main" }
 serde = "1.0"
-k256 = { version = "0.13", features = ["serde"] }
+k256 = { version = "0.13", default-features = false, features = ["serde", "arithmetic"] }
 serde_json = { version = "1.0.122" }
