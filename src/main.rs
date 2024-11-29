@@ -20,8 +20,8 @@ fn main() {
         .mul(private_key)
         .add(h.mul(Scalar::from(amount)));
 
-    println!("Commitment: {:?}", commitment.to_affine());
-    println!("Private key: {:?}", private_key);
-    println!("G: {:?}", g.to_affine());
-    println!("H: {:?}", h.to_affine());
+    valida_rs::io::println("Commitment: {:?}", commitment.to_affine());
+    valida_rs::io::println("Private key: {:?}", private_key);
+    valida_rs::io::println("G: {:?}", g.to_affine());
+    valida_rs::io::println("H: {:?}", h.to_affine());
 }
