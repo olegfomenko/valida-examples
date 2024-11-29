@@ -1,6 +1,5 @@
 #![no_main]
 
-use k256::elliptic_curve::Group;
 use k256::{AffinePoint, ProjectivePoint, Scalar};
 use std::ops::{Add, Mul};
 #[no_mangle]
