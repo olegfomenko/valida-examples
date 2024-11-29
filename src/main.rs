@@ -6,7 +6,7 @@ use std::ops::{Add, Mul};
 use k256::elliptic_curve::group::Curve;
 use rand::rngs::OsRng;
 
-#[no_mangle]
+valida_rs::entrypoint!(main);
 fn main() {
 
     let mut csprng = OsRng;
