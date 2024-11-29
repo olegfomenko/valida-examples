@@ -1,23 +1,29 @@
 #![no_main]
 
-use k256::{AffinePoint, ProjectivePoint, Scalar};
+use k256::elliptic_curve::Group;
+use k256::Scalar;
 use std::ops::{Add, Mul};
+use k256::elliptic_curve::group::Curve;
+use rand::rngs::OsRng;
+
 #[no_mangle]
 fn main() {
-    let private_key_str = valida_rs::io::read_line::<String>().unwrap();
-    let private_key = serde_json::from_str::<Scalar>(&private_key_str).unwrap();
 
-    let amount = valida_rs::io::read_line::<u64>().unwrap();
+    let mut csprng = OsRng;
 
-    let g_str = valida_rs::io::read_line::<String>().unwrap();
-    let g = serde_json::from_str::<AffinePoint>(&g_str).unwrap();
+    let private_key = Scalar::generate_biased(&mut csprng);
+    let amount = 12345u64;
+    let g = k256::ProjectivePoint::random(&mut csprng);
+    let h = k256::ProjectivePoint::random(&mut csprng);
 
-    let h_str = valida_rs::io::read_line::<String>().unwrap();
-    let h =  serde_json::from_str::<AffinePoint>(&h_str).unwrap();
 
-    let commitment = ProjectivePoint::from(g)
+
+    let commitment = g
         .mul(private_key)
-        .add(ProjectivePoint::from(h).mul(Scalar::from(amount)));
+        .add(h.mul(Scalar::from(amount)));
 
-    println!("Commitment: {}", serde_json::to_string_pretty(&commitment.to_affine()).unwrap());
+    println!("Commitment: {:?}", commitment.to_affine());
+    println!("Private key: {:?}", private_key);
+    println!("G: {:?}", g.to_affine());
+    println!("H: {:?}", h.to_affine());
 }
