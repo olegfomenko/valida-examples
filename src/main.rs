@@ -3,9 +3,6 @@
 use k256::elliptic_curve::Group;
 use k256::{AffinePoint, ProjectivePoint, Scalar};
 use std::ops::{Add, Mul};
-
-valida_rs::entrypoint!(main);
-
 #[no_mangle]
 fn main() {
     let private_key_str = valida_rs::io::read_line::<String>().unwrap();
