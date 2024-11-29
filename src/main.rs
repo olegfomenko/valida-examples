@@ -16,8 +16,6 @@ fn main() {
     let g = k256::ProjectivePoint::random(&mut csprng);
     let h = k256::ProjectivePoint::random(&mut csprng);
 
-
-
     let commitment = g
         .mul(private_key)
         .add(h.mul(Scalar::from(amount)));
