@@ -11,7 +11,7 @@ fn main() {
     let amount = Scalar::from(12345u64);
 
     let g = k256::ProjectivePoint::GENERATOR;
-    let h = g.mul(k256::Scalar::from(12345));
+    let h = g.mul(k256::Scalar::from(12345u32));
 
     let commitment = g.mul(private_key).add(h.mul(amount));
 
